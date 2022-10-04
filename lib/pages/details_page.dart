@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 import '../json_test/json_test.dart';
@@ -10,10 +11,45 @@ import '../routes/routes_app.dart';
 import '../widgets/leading_widget.dart';
 import '../widgets/title_sub_title.dart';
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends StatefulWidget {
    
   const DetailsPage({Key? key}) : super(key: key);
-  
+
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStateMixin  {
+  late AnimationController controller;
+  late Animation<double> scale;
+  late Animation<double> opacity;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 250)
+    );
+    scale = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: controller, curve: Curves.easeOut)
+    );
+    opacity = Tween(begin: 0.1, end: 1.0).animate(
+      CurvedAnimation(parent: controller, curve: const Interval(0.0, 0.75, curve: Curves.easeOut))
+    );
+    // controller.addListener(() {
+    //   if(controller.status == AnimationStatus.completed){
+    //     print('jean: Se completo la animacion');
+    //   } 
+    // });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
@@ -30,7 +66,8 @@ class DetailsPage extends StatelessWidget {
 
             GestureDetector(
               onTap: () {
-                print('jean: Click al Gesture Detector');
+                // print('jean: Click al Gesture Detector');
+                if(controller.status != AnimationStatus.completed) controller.forward();
               },
               child: Hero(
                 tag: movie.id,
@@ -49,33 +86,43 @@ class DetailsPage extends StatelessWidget {
             ), 
           
 
-            Visibility(
-              visible: true,
-              child: Positioned(
-                top: 25,
-                left: 12,
-                child: LeadingWidget( 
-                  icon: Icons.close,
-                  color: const Color.fromARGB(255, 195, 195, 195), 
-                  onPressed: () { 
-                    print('jean: Precionado Boton de la equis');
-                  },
-                ),
+            Positioned(
+              top: 25,
+              left: 12,
+              child: AnimatedBuilder(
+                animation: controller, 
+                builder: (BuildContext context, Widget? child) { 
+                  return Opacity(
+                    opacity: opacity.value,
+                    child: LeadingWidget( 
+                      icon: Icons.close,
+                      color: const Color.fromARGB(255, 195, 195, 195), 
+                      onPressed: () { 
+                        // print('jean: Precionado Boton de la equis'); 
+                        if(controller.status == AnimationStatus.completed) controller.reverse();
+                      },
+                    ),
+                  );
+                }, 
+              ), 
+            ),
+
+
+            Positioned(
+              bottom: 0,
+              height: 250,
+              child: AnimatedBuilder(
+                animation: controller, 
+                builder: (BuildContext context, Widget? child) { 
+                  return Transform.scale(
+                    scale: scale.value,
+                    child: _MovieTitleAndActos(movie: movie, castActors: castActors),
+                  );
+                }, 
               ),
-            ), 
+            ),
 
-
-            Visibility(
-              visible: true,
-              child: Positioned(
-                bottom: 0,
-                height: 250,
-                child: _MovieTitleAndActos(movie: movie, castActors: castActors),
-              ),
-            ), 
-            
-
-
+ 
           ],
         ),
       ),
