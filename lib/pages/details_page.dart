@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../json_test/json_test.dart';
+
 import '../models/credits_by_idmovie.dart';
 import '../models/popular_movies.dart';
+
+import '../routes/routes_app.dart';
+
 import '../widgets/leading_widget.dart';
+import '../widgets/title_sub_title.dart';
 
 class DetailsPage extends StatelessWidget {
    
@@ -11,60 +16,84 @@ class DetailsPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-    print('jean movie: ${movie}');
-
-    // final CreditsByIdMovie creditsByIdMovie = CreditsByIdMovie.fromJson(JsonTest.creditsByMovieId);  
-
-    // print('jean: ${creditsByIdMovie.cast. }');
-
+    // print('jean movie: ${movie}');
+    // print('jean: ${JsonTest.creditsByMovieId}');
+    final CreditsByIdMovie creditsByIdMovie = CreditsByIdMovie.fromJson( JsonTest.creditsByMovieId );  
+    final List<Cast> castActors = creditsByIdMovie.cast.toList();
+    print('jean: ${castActors.length}');
     return SafeArea(
       child: Scaffold(  
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-
-
-              Hero(
-                tag: movie.id,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage( 
-                      image: NetworkImage(movie.fullPostering),
-                      fit: BoxFit.cover
-                    ),
+        body: Stack(
+          children: [ 
+            Hero(
+              tag: movie.id,
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage( 
+                    image: NetworkImage(movie.fullPostering),
+                    fit: BoxFit.cover
                   ),
-                  alignment: Alignment.center, 
-                  height: MediaQuery.of(context).size.height,
-                  width: double.infinity,  
                 ),
+                alignment: Alignment.center, 
+                height: MediaQuery.of(context).size.height,
+                width: double.infinity,  
               ),
-
-
-              const Center(
-                child: Text( 
-                  'Hola mundo',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 50, height: 1.5),
-                )
+            ), 
+            Positioned(
+              top: 25,
+              left: 12,
+              child: LeadingWidget( 
+                icon: Icons.close,
+                color: const Color.fromARGB(255, 195, 195, 195), 
+                onPressed: () { 
+                  print('jean: Precionado Boton');
+                },
               ),
-
-
-              Positioned(
-                top: 10,
-                left: 4,
-                child: LeadingWidget( 
-                  icon: Icons.close,
-                  color: const Color.fromARGB(255, 221, 221, 221), 
-                  onPressed: () { 
-                    print('jean: Precionado Boton');
-                  },
-                ),
+            ), 
+            Positioned(
+              bottom: 0,
+              height: 250,
+              child: Stack(
+                children: [ 
+                  Container(
+                    color: Colors.black.withOpacity(0.4), 
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.only(top: 20, bottom: 0, left: 15, right: 15),
+                    child: TitleSubTitle(
+                      title: movie.title, 
+                      subTitle: movie.voteAverage, 
+                      isAverage: true, 
+                      sizeTitle: 35, 
+                      sizeSubTitle: 17, 
+                      maxLinesTitle: 1, 
+                      maxLinesSubTitle: 1, 
+                      heightTitle: 1.3,
+                    ),
+                  ), 
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      alignment: Alignment.center,
+                      // color: Colors.white,
+                      width: MediaQuery.of(context).size.width,
+                      height: 170,
+                      child:   
+                      ListView.builder( 
+                        itemExtent: MediaQuery.of(context).size.width / 3,
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: castActors.length >= 3 ? 3 : castActors.length,
+                        itemBuilder: (BuildContext context, int index) {
+                            return _ActorPoster( actor: castActors[index] );
+                          },
+                        ), 
+                    )
+                  ) 
+                ],
               ),
-
-              
-            ],
-          ),
+            ), 
+          ],
         ),
       ),
     );
@@ -72,43 +101,38 @@ class DetailsPage extends StatelessWidget {
 }
 
 
-class _MoviePoster extends StatelessWidget {
+class _ActorPoster extends StatelessWidget {
   
-  final Movie movie;
-  final Cast credits;
-  final int index;
+  final Cast actor;
   
-  const _MoviePoster({
-    Key? key,   
-    required this.movie, 
-    required this.credits,
-    required this.index, 
+  const _ActorPoster({
+    Key? key,  
+    required this.actor, 
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final int parImpar = index % 2;
-    // print('jean: ${parImpar}');
+  Widget build(BuildContext context) { 
     return Container(
+      alignment: Alignment.bottomCenter,
+      padding: const EdgeInsets.only(bottom: 13),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10), 
       ),
-      padding: EdgeInsets.only(bottom: parImpar == 1 ? 0 : 25, top: parImpar == 1 ? 25 : 0),
       width: 150,
       height: 230,
       child: Stack(
         children:  [
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, 'profile', arguments: movie),
+            onTap: () => Navigator.pushNamed( context, RouteNames.profile, arguments: actor ),
             child: Hero(
-              tag: movie.id,
+              tag: actor.id,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: FadeInImage(
                   placeholder: const AssetImage('assets/no-image.jpg'), 
-                  image: NetworkImage(credits.fullProfilePath),
-                  width: 140,
-                  height: 230,
+                  image: NetworkImage(actor.fullProfilePath ),
+                  width: 110,
+                  height: 138,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -117,28 +141,15 @@ class _MoviePoster extends StatelessWidget {
           Positioned(
             bottom: 5,
             left: 10,
-            child: Container(
-              alignment: Alignment.bottomLeft,
-              width: 120,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    movie.title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13, height: 1.5), 
-                  ),
-                  Text(
-                    '${(movie.voteAverage*10)}% User Score', 
-                    maxLines: 1, 
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.w600, fontSize: 10, height: 1) 
-                  )
-                ],
-              ),
+            child: TitleSubTitle(
+              title: actor.name, 
+              subTitle: actor.knownForDepartment, 
+              isAverage: true, 
+              sizeTitle: 10, 
+              sizeSubTitle: 8, 
+              maxLinesTitle: 1, 
+              maxLinesSubTitle: 1, 
+              width: 90,
             ),
           )
         ],

@@ -43,12 +43,12 @@ class Cast {
     required this.originalName,
     required this.popularity,
     this.profilePath,
-    required this.castId,
-    required this.character,
+    this.castId,
+    this.character,
     required this.creditId,
-    required this.order,
-    required this.department,
-    required this.job,
+    this.order,
+    this.department,
+    this.job,
   });
 
   final bool adult;
@@ -59,12 +59,12 @@ class Cast {
   final String originalName;
   final double popularity;
   final dynamic profilePath;
-  final int castId;
-  final String character;
+  final int? castId;
+  final String? character;
   final String creditId;
-  final int order;
-  final String department;
-  final String job;
+  final int? order;
+  final String? department;
+  final String? job;
 
   factory Cast.fromJson(String str) => Cast.fromMap(json.decode(str));
 
@@ -79,12 +79,12 @@ class Cast {
     originalName: json["original_name"],
     popularity: json["popularity"].toDouble(),
     profilePath: json["profile_path"],
-    castId: json["cast_id"],
-    character: json["character"],
+    castId: json["cast_id"] ?? 0,
+    character: json["character"] ?? '',
     creditId: json["credit_id"],
-    order: json["order"],
-    department: json["department"],
-    job: json["job"],
+    order: json["order"] ?? 0,
+    department: json["department"] ?? '',
+    job: json["job"] ?? '',
   );
 
   Map<String, dynamic> toMap() => {

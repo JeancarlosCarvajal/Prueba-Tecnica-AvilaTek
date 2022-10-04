@@ -43,26 +43,45 @@ class Movie {
     this.backdropPath,
     required this.genreIds,
     required this.id,
+    String? mediaType,
     this.originalLanguage,
     required this.originalTitle,
     required this.overview,
-    required this.popularity,
+    double? popularity,
     this.posterPath,
     required this.releaseDate,
     required this.title,
     required this.video,
     required this.voteAverage,
     required this.voteCount,
-  });
+  }) :
+    mediaType = mediaType ?? '',
+    popularity = popularity ?? 0.0;
+
+    // required this.adult,
+    // this.backdropPath,
+    // required this.genreIds,
+    // required this.id,
+    // required this.mediaType,
+    // required this.originalLanguage,
+    // required this.originalTitle,
+    // required this.overview,
+    // this.posterPath,
+    // required this.releaseDate,
+    // required this.title,
+    // required this.video,
+    // required this.voteAverage,
+    // required this.voteCount,
 
   final bool adult;
   final dynamic backdropPath;
   final List<int> genreIds;
   final int id;
+  final String mediaType;
   final OriginalLanguage? originalLanguage;
   final String originalTitle;
   final String overview;
-  final double popularity;
+  final double? popularity;
   final dynamic posterPath;
   final DateTime releaseDate;
   final String title;
@@ -74,15 +93,16 @@ class Movie {
 
   String toJson() => json.encode(toMap());
 
-factory Movie.fromMap(Map<String, dynamic> json) => Movie(
+  factory Movie.fromMap(Map<String, dynamic> json) => Movie(
     adult: json["adult"],
     backdropPath: json["backdrop_path"],
     genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     id: json["id"],
+    mediaType: json["media_type"] ?? '',
     originalLanguage: originalLanguageValues.map[json["original_language"]],
     originalTitle: json["original_title"],
     overview: json["overview"],
-    popularity: json["popularity"].toDouble(),
+    popularity: json["popularity"] == null ? 0.0 : json["popularity"].toDouble(),
     posterPath: json["poster_path"],
     releaseDate: DateTime.parse(json["release_date"]),
     title: json["title"],
@@ -96,6 +116,7 @@ factory Movie.fromMap(Map<String, dynamic> json) => Movie(
     "backdrop_path": backdropPath,
     "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
     "id": id,
+    "media_type": mediaType,
     "original_language": originalLanguageValues.reverse[originalLanguage],
     "original_title": originalTitle,
     "overview": overview,

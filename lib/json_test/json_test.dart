@@ -4056,7 +4056,7 @@ class JsonTest {
 
 
   // Actor Leonardo Dicaprio
-  static const moviesByActor = """{
+  static const moviesByActor = {
     "page": 1,
     "results": [
       {
@@ -4124,7 +4124,7 @@ class JsonTest {
     ],
     "total_pages": 1,
     "total_results": 1
-  }""";
+  };
 
 
     
