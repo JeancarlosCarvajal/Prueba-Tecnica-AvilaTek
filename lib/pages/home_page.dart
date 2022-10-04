@@ -16,8 +16,8 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold( 
         appBar: AppBar(
-          toolbarHeight: 80,
-          leadingWidth: 80,
+          toolbarHeight: 70,
+          leadingWidth: 70,
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: LeadingWidget(
@@ -51,6 +51,8 @@ class HomePage extends StatelessWidget {
               },   
             ),
           ),
+        
+        
         ),
       ),
     );

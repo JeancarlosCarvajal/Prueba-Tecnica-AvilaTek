@@ -17,11 +17,11 @@ class LeadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(25),
-      width: 30,
-      height: 30,
+      margin: const EdgeInsets.all(22),
+      width: 25,
+      height: 25,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35), 
+        borderRadius: BorderRadius.circular(30), 
         gradient: const LinearGradient(
           begin: Alignment.centerRight,
           end: Alignment.centerLeft,

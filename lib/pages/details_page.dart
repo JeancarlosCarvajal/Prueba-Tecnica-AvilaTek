@@ -20,50 +20,50 @@ class DetailsPage extends StatelessWidget {
     // print('jean: ${creditsByIdMovie.cast. }');
 
     return SafeArea(
-      child: Scaffold( 
-        appBar: AppBar(
-          toolbarHeight: 80,
-          leadingWidth: 80,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: LeadingWidget( 
-            icon: Icons.close,
-            color: const Color.fromARGB(255, 202, 202, 202), 
-            onPressed: () { 
-              print('jean: Precionado Boton');
-            },
-           ), 
-          centerTitle: true,
-          title: const Text( 'Latest', style: TextStyle( fontSize: 20, fontWeight: FontWeight.w800, color: Colors.black) ),
-        ), 
+      child: Scaffold(  
         body: SingleChildScrollView(
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                // opacity: 1,
-                image: NetworkImage(movie.fullPostering),
-                fit: BoxFit.cover
-              ),
-            ),
-            alignment: Alignment.center, 
-            height: MediaQuery.of(context).size.height - 80,
-            width: double.infinity,
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: const Center(child: Text( 'Hola mundo' )),
-            
-            // GridView.builder(
-            //   itemCount: creditsByIdMovie.cast.length >= 3 ? 3 : creditsByIdMovie.cast.length,
-            //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            //     crossAxisCount: 2,
-            //     mainAxisExtent: 250,
-            //     crossAxisSpacing: 15, // entre columnas
-            //     // mainAxisSpacing: 10, // arriba abajo 
-            //   ),
-            //   itemBuilder: (BuildContext context, int index) { 
-            //     return _MoviePoster(credits: creditsByIdMovie.cast[index], index: index, movie: movie,); 
-            //   },   
-            // ),
+          child: Stack(
+            children: [
 
+
+              Hero(
+                tag: movie.id,
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage( 
+                      image: NetworkImage(movie.fullPostering),
+                      fit: BoxFit.cover
+                    ),
+                  ),
+                  alignment: Alignment.center, 
+                  height: MediaQuery.of(context).size.height,
+                  width: double.infinity,  
+                ),
+              ),
+
+
+              const Center(
+                child: Text( 
+                  'Hola mundo',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 50, height: 1.5),
+                )
+              ),
+
+
+              Positioned(
+                top: 10,
+                left: 4,
+                child: LeadingWidget( 
+                  icon: Icons.close,
+                  color: const Color.fromARGB(255, 221, 221, 221), 
+                  onPressed: () { 
+                    print('jean: Precionado Boton');
+                  },
+                ),
+              ),
+
+              
+            ],
           ),
         ),
       ),
