@@ -107,7 +107,23 @@ factory Movie.fromMap(Map<String, dynamic> json) => Movie(
     "vote_average": voteAverage,
     "vote_count": voteCount,
   };
+
+  get fullPostering { 
+    return posterPath != null 
+      ? 'https://image.tmdb.org/t/p/w500$posterPath' 
+      : 'https://i.stack.imgur.com/GNhxO.png';
+  }
+ 
+  get fullBackdropPath {
+    return backdropPath != null 
+      ? 'https://image.tmdb.org/t/p/w500$backdropPath' 
+      : 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
 }
+
+ 
+
 
 enum OriginalLanguage { en, es, ja, te }
 

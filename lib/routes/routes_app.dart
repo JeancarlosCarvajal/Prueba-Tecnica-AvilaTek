@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../pages/details_page.dart';
 import '../pages/home_page.dart';
  
  
@@ -9,9 +10,9 @@ import '../pages/home_page.dart';
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
 
-  RouteNames.home    : ( _ ) => const HomePage(),  
-  RouteNames.details : ( _ ) => const HomePage(),  
-  RouteNames.profile : ( _ ) => const HomePage(),  
+  RouteNames.home    : ( context ) => const HomePage(),  
+  RouteNames.details : ( context ) => const DetailsPage(),  
+  RouteNames.profile : ( context ) => const HomePage(),  
 
 };
 

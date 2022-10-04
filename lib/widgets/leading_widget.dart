@@ -17,7 +17,7 @@ class LeadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(30),
+      margin: const EdgeInsets.all(25),
       width: 30,
       height: 30,
       decoration: BoxDecoration(

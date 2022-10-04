@@ -85,6 +85,12 @@ class Result {
     "popularity": popularity,
     "profile_path": profilePath,
   };
+
+    get fullProfilePath { 
+    return profilePath != null 
+      ? 'https://image.tmdb.org/t/p/w500$profilePath' 
+      : 'https://i.stack.imgur.com/GNhxO.png';
+  } 
 }
 
 class KnownFor {
@@ -157,4 +163,17 @@ class KnownFor {
     "vote_average": voteAverage,
     "vote_count": voteCount,
   };
+
+  get fullPostering { 
+    return posterPath != null 
+      ? 'https://image.tmdb.org/t/p/w500$posterPath' 
+      : 'https://i.stack.imgur.com/GNhxO.png';
+  }
+ 
+  get fullBackdropPath {
+    return backdropPath != null 
+      ? 'https://image.tmdb.org/t/p/w500$backdropPath' 
+      : 'https://i.stack.imgur.com/GNhxO.png';
+  }
+  
 }
