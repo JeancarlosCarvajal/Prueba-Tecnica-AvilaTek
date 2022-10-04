@@ -13,7 +13,7 @@ class LeadingWidget extends StatelessWidget {
     required this.icon, 
     required this.onPressed, 
     this.color = Colors.white, 
-    this.margin = 20,
+    this.margin = 15,
   }) : super(key: key);
 
   @override
@@ -22,8 +22,8 @@ class LeadingWidget extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.all(margin),
-          width: 22,
-          height: 22,
+          width: 25,
+          height: 25,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30), 
             gradient: const LinearGradient(

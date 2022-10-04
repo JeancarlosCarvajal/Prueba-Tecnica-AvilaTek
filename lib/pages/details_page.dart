@@ -26,76 +26,112 @@ class DetailsPage extends StatelessWidget {
       child: Scaffold(  
         body: Stack(
           children: [ 
-            Hero(
-              tag: movie.id,
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage( 
-                    image: NetworkImage(movie.fullPostering),
-                    fit: BoxFit.cover
-                  ),
-                ),
-                alignment: Alignment.center, 
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,  
-              ),
-            ), 
-            Positioned(
-              top: 25,
-              left: 12,
-              child: LeadingWidget( 
-                icon: Icons.close,
-                color: const Color.fromARGB(255, 195, 195, 195), 
-                onPressed: () { 
-                  print('jean: Precionado Boton');
-                },
-              ),
-            ), 
-            Positioned(
-              bottom: 0,
-              height: 250,
-              child: Stack(
-                children: [ 
-                  Container(
-                    color: Colors.black.withOpacity(0.4), 
-                    width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.only(top: 20, bottom: 0, left: 15, right: 15),
-                    child: TitleSubTitle(
-                      title: movie.title, 
-                      subTitle: movie.voteAverage, 
-                      isAverage: true, 
-                      sizeTitle: 35, 
-                      sizeSubTitle: 17, 
-                      maxLinesTitle: 1, 
-                      maxLinesSubTitle: 1, 
-                      heightTitle: 1.3,
+
+
+            GestureDetector(
+              onTap: () {
+                print('jean: Click al Gesture Detector');
+              },
+              child: Hero(
+                tag: movie.id,
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage( 
+                      image: NetworkImage(movie.fullPostering),
+                      fit: BoxFit.cover
                     ),
-                  ), 
-                  Positioned(
-                    bottom: 0,
-                    child: Container(
-                      alignment: Alignment.center,
-                      // color: Colors.white,
-                      width: MediaQuery.of(context).size.width,
-                      height: 170,
-                      child:   
-                      ListView.builder( 
-                        itemExtent: MediaQuery.of(context).size.width / 3,
-                        physics: const NeverScrollableScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: castActors.length >= 3 ? 3 : castActors.length,
-                        itemBuilder: (BuildContext context, int index) {
-                            return _ActorPoster( actor: castActors[index] );
-                          },
-                        ), 
-                    )
-                  ) 
-                ],
+                  ),
+                  alignment: Alignment.center, 
+                  height: MediaQuery.of(context).size.height,
+                  width: double.infinity,  
+                ),
               ),
             ), 
+          
+
+            Visibility(
+              visible: true,
+              child: Positioned(
+                top: 25,
+                left: 12,
+                child: LeadingWidget( 
+                  icon: Icons.close,
+                  color: const Color.fromARGB(255, 195, 195, 195), 
+                  onPressed: () { 
+                    print('jean: Precionado Boton de la equis');
+                  },
+                ),
+              ),
+            ), 
+
+
+            Visibility(
+              visible: true,
+              child: Positioned(
+                bottom: 0,
+                height: 250,
+                child: _MovieTitleAndActos(movie: movie, castActors: castActors),
+              ),
+            ), 
+            
+
+
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class _MovieTitleAndActos extends StatelessWidget {
+  const _MovieTitleAndActos({
+    Key? key,
+    required this.movie,
+    required this.castActors,
+  }) : super(key: key);
+
+  final Movie movie;
+  final List<Cast> castActors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [ 
+        Container(
+          color: Colors.black.withOpacity(0.4), 
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.only(top: 20, bottom: 0, left: 15, right: 15),
+          child: TitleSubTitle(
+            title: movie.title, 
+            subTitle: movie.voteAverage, 
+            isAverage: true, 
+            sizeTitle: 35, 
+            sizeSubTitle: 17, 
+            maxLinesTitle: 1, 
+            maxLinesSubTitle: 1, 
+            heightTitle: 1.3,
+          ),
+        ), 
+        Positioned(
+          bottom: 0,
+          child: Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            height: 170,
+            child:   
+            ListView.builder( 
+              itemExtent: MediaQuery.of(context).size.width / 3,
+              physics: const NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: castActors.length >= 3 ? 3 : castActors.length,
+              itemBuilder: (BuildContext context, int index) {
+                  return _ActorPoster( actor: castActors[index] );
+                },
+              ), 
+          )
+        ) 
+      ],
     );
   }
 }
@@ -130,7 +166,7 @@ class _ActorPoster extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: FadeInImage(
                   placeholder: const AssetImage('assets/no-image.jpg'), 
-                  image: NetworkImage(actor.fullProfilePath ),
+                  image: NetworkImage(actor.fullProfilePath),
                   width: 110,
                   height: 138,
                   fit: BoxFit.cover,
@@ -143,7 +179,7 @@ class _ActorPoster extends StatelessWidget {
             left: 10,
             child: TitleSubTitle(
               title: actor.name, 
-              subTitle: actor.knownForDepartment, 
+              subTitle: actor.character, 
               isAverage: true, 
               sizeTitle: 10, 
               sizeSubTitle: 8, 

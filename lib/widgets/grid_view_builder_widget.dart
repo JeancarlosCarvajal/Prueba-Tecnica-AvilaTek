@@ -68,7 +68,7 @@ class _MoviePoster extends StatelessWidget {
       ),
       padding: EdgeInsets.only(bottom: parImpar == 1 ? 0 : 25, top: parImpar == 1 ? 25 : 0),
       width: 150,
-      height: 230,
+      // height: 230,
       child: Stack(
         children:  [
           GestureDetector(
@@ -80,8 +80,8 @@ class _MoviePoster extends StatelessWidget {
                 child: FadeInImage(
                   placeholder: const AssetImage('assets/no-image.jpg'), 
                   image: NetworkImage(movie.fullPostering),
-                  width: 160,
-                  height: 230,
+                  width: 150,
+                  // height: 230,
                   fit: BoxFit.cover,
                 ),
               ),
