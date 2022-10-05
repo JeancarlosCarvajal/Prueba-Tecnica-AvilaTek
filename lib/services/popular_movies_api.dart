@@ -1,4 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:movie_app/routes/routes_api.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,7 +9,7 @@ class PopularMoviesApi {
       var url = Uri.https( 
         RoutesAPI.baseURL, 
         RoutesAPI.popularEndPoint, {
-          'api_key': dotenv.env['API_KEY'],
+          'api_key': RoutesAPI.apiKEY,
           'language': RoutesAPI.language,
           'page': '$page'
         }
