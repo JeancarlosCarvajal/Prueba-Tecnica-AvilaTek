@@ -8,7 +8,7 @@ class MoviesByActorApi {
     try {
       var url = Uri.https( 
         RoutesAPI.baseURL, 
-        RoutesAPI.popularEndPoint, {
+        RoutesAPI.popularMoviesEndPoint, {
           'api_key': RoutesAPI.apiKEY,
           'language': RoutesAPI.language,
           'page': '$page',

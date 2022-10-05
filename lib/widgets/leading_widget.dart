@@ -36,7 +36,7 @@ class LeadingWidget extends StatelessWidget {
             ), 
           ),
           child:  ClipRRect(
-            borderRadius: BorderRadius.circular(35), 
+            borderRadius: BorderRadius.circular(30), 
             child: Material(
               color: Colors.transparent,
               child: InkWell(

@@ -8,21 +8,22 @@ class GridViewBuilder extends StatelessWidget {
   const GridViewBuilder({
     Key? key, 
     required this.movies, 
-    this.heigth = 100, 
+    this.heigthToLeftFree = 100, 
     this.bottom = 65,
   }) : super(key: key);
 
   // final PopularMovies popularMovies;
   final List<Movie> movies;
-  final double heigth;
+  final double heigthToLeftFree;
   final double bottom;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+        color: Colors.white,
         alignment: Alignment.center, 
-        height: MediaQuery.of(context).size.height - heigth,
+        height: MediaQuery.of(context).size.height - heigthToLeftFree,
         width: double.infinity, 
         margin: const EdgeInsets.symmetric(horizontal: 20),
         child: GridView.builder(

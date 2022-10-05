@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final popularMovies = popularMoviesFromMap(jsonString);
-
 import 'dart:convert';
 
 class PopularMovies {
@@ -49,29 +45,20 @@ class Movie {
     required this.overview,
     double? popularity,
     this.posterPath,
-    required this.releaseDate,
+    this.releaseDate,
     required this.title,
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+
+    this.character,
+    this.creditId,
+    this.order,
+    this.department,
+    this.job,
   }) :
     mediaType = mediaType ?? '',
-    popularity = popularity ?? 0.0;
-
-    // required this.adult,
-    // this.backdropPath,
-    // required this.genreIds,
-    // required this.id,
-    // required this.mediaType,
-    // required this.originalLanguage,
-    // required this.originalTitle,
-    // required this.overview,
-    // this.posterPath,
-    // required this.releaseDate,
-    // required this.title,
-    // required this.video,
-    // required this.voteAverage,
-    // required this.voteCount,
+    popularity = popularity ?? 0.0; 
 
   final bool adult;
   final dynamic backdropPath;
@@ -83,19 +70,25 @@ class Movie {
   final String overview;
   final double? popularity;
   final dynamic posterPath;
-  final DateTime releaseDate;
+  final dynamic releaseDate;
   final String title;
   final bool video;
   final double voteAverage;
   final int voteCount;
 
+  final String? character;
+  final String? creditId;
+  final int? order;
+  final Department? department;
+  final Job? job;
+     
   factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory Movie.fromMap(Map<String, dynamic> json) => Movie(
     adult: json["adult"],
-    backdropPath: json["backdrop_path"],
+    backdropPath: json["backdrop_path"] ?? '',
     genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     id: json["id"],
     mediaType: json["media_type"] ?? '',
@@ -104,11 +97,17 @@ class Movie {
     overview: json["overview"],
     popularity: json["popularity"] == null ? 0.0 : json["popularity"].toDouble(),
     posterPath: json["poster_path"],
-    releaseDate: DateTime.parse(json["release_date"]),
+    releaseDate: json["release_date"],
     title: json["title"],
     video: json["video"],
     voteAverage: json["vote_average"].toDouble(),
     voteCount: json["vote_count"],
+
+    character: json["character"],
+    creditId: json["credit_id"],
+    order: json["order"],
+    department: departmentValues.map[json["department"]],
+    job: jobValues.map[json["job"]],
   );
 
   Map<String, dynamic> toMap() => {
@@ -127,6 +126,12 @@ class Movie {
     "video": video,
     "vote_average": voteAverage,
     "vote_count": voteCount,
+
+    "character": character,
+    "credit_id": creditId,
+    "order": order,
+    "department": departmentValues.reverse[department],
+    "job": job == null ? null : jobValues.reverse[job],
   };
 
   get fullPostering { 
@@ -143,7 +148,22 @@ class Movie {
 
 }
 
- 
+
+enum Department { PRODUCTION, WRITING }
+
+final departmentValues = EnumValues({
+    "Production": Department.PRODUCTION,
+    "Writing": Department.WRITING
+});
+
+enum Job { EXECUTIVE_PRODUCER, PRODUCER, SCREENPLAY, WRITER }
+
+final jobValues = EnumValues({
+    "Executive Producer": Job.EXECUTIVE_PRODUCER,
+    "Producer": Job.PRODUCER,
+    "Screenplay": Job.SCREENPLAY,
+    "Writer": Job.WRITER
+});
 
 
 enum OriginalLanguage { en, es, ja, te }

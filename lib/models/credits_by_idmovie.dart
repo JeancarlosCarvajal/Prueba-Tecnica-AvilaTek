@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final creditsByIdMovie = creditsByIdMovieFromMap(jsonString);
-
 import 'dart:convert';
 
 class CreditsByIdMovie {

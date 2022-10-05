@@ -13,26 +13,52 @@ class HomePage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    
     final PopularMovies popularMovies = PopularMovies.fromJson( JsonTest.popularMovies );  
+    final List<Movie> movies = popularMovies.movies; 
+
     print('jean: ${popularMovies.movies.length}');
+
     return SafeArea(
-      child: Scaffold( 
-        appBar: AppBar(
-          toolbarHeight: 100,
-          leadingWidth: 100,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: LeadingWidget(
-            icon: Icons.menu,
-            margin: 37,
-            onPressed: () { 
-              print('jean: Precionado Boton');
-            },
-           ), 
-          centerTitle: true,
-          title: const Text( 'Latest', style: TextStyle( fontSize: 20, fontWeight: FontWeight.w800, color: Colors.black) ),
-        ), 
-        body: GridViewBuilder(movies: popularMovies.movies),
+      child: Scaffold(
+        body: Container(
+          color: Colors.white,
+          child: Column( 
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+
+              SizedBox(
+                height: 100, 
+                child: Stack(
+                  children: [
+                  LeadingWidget(
+                    icon: Icons.menu,
+                    margin: 37,
+                    onPressed: () { 
+                      print('jean: Precionado Boton');
+                    },
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Latest', 
+                      textAlign: TextAlign.center, 
+                      style: TextStyle( fontSize: 20, fontWeight: FontWeight.w800, color: Colors.black) 
+                    )
+                  ),
+                  ],
+                ),
+              ),
+              
+              Flexible(
+                flex: 1,
+                child: GridViewBuilder(movies: movies, heigthToLeftFree: 100)
+              ),
+            
+            ],
+          ),
+        ),
+
       ),
     );
   }

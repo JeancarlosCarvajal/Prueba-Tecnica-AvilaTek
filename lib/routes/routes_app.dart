@@ -1,8 +1,8 @@
 
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
 import '../pages/details_page.dart';
-import '../pages/home_page.dart';
+import '../pages/home_page.dart'; 
 import '../pages/profile_page.dart';
  
  

@@ -1,10 +1,6 @@
-// To parse this JSON data, do
-//
-//     final moviesByActor = moviesByActorFromMap(jsonString);
-
 import 'dart:convert';
 
-import 'popular_movies.dart';
+import '../models/popular_movies.dart';
 
 class MoviesByActor {
 
@@ -88,7 +84,7 @@ class Result {
     "profile_path": profilePath,
   };
 
-    get fullProfilePath { 
+  get fullProfilePath { 
     return profilePath != null 
       ? 'https://image.tmdb.org/t/p/w500$profilePath' 
       : 'https://i.stack.imgur.com/GNhxO.png';

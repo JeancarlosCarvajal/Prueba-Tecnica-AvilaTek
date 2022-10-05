@@ -8,17 +8,17 @@ class DetailsMoviesApi {
     try {
       var url = Uri.https( 
         RoutesAPI.baseURL, 
-        RoutesAPI.detailsEndPont(movieId: movieId), {
+        RoutesAPI.movieDetailsEndPont(movieId: movieId), {
           'api_key': RoutesAPI.apiKEY,
           'language': RoutesAPI.language, 
         }
       );
       final responce = await http.get(url);
-      print('jean: ${responce.statusCode}');
+      print('jean movieDetailsEndPont: ${responce.statusCode}');
       if(responce.statusCode != 200) return false; 
       return responce.body;
     } catch (e) {
-      print('jean: ${e.toString()}');
+      print('jean movieDetailsEndPont: ${e.toString()}');
       return false;
     }
   }

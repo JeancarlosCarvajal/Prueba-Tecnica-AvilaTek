@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+ 
 import 'routes/routes_app.dart';
 
 void main() => runApp(MyApp());
@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Movies App',
+      // home: HomePageTest(),
       initialRoute: RouteNames.home,
       routes: appRoutes,
       theme: ThemeData(
