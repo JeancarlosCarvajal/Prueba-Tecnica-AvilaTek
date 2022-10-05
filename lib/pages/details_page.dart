@@ -48,8 +48,9 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-    // print('jean movie: ${movie}');
+    // print('jean movie: ${movie.id}');
     // print('jean: ${JsonTest.creditsByMovieId}');
+
     final CreditsByIdMovie creditsByIdMovie = CreditsByIdMovie.fromJson( JsonTest.creditsByMovieId );  
     final List<Cast> castActors = creditsByIdMovie.cast.toList();
     print('jean: ${castActors.length}');

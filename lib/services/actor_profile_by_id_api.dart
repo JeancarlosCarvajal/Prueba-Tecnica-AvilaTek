@@ -1,10 +1,12 @@
-import 'package:movie_app/routes/routes_api.dart';
+
 import 'package:http/http.dart' as http;
+
+import '../routes/routes_api.dart';
 
 
 class ActorProfileByIdApi {
 
-  Future<dynamic> getActorProfileByIdJsonData({ required String actorId }) async {
+  static Future<dynamic> getActorProfileByIdJsonData({ required String actorId }) async {
     try {
       var url = Uri.https( 
         RoutesAPI.baseURL, 

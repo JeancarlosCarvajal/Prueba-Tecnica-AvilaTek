@@ -4,7 +4,7 @@ import '../json_test/json_test.dart';
 
 import '../models/actor_profile_by_id.dart';
 import '../models/credits_by_idmovie.dart';
-import '../trash_can/movies_by_actor.dart';
+
 import '../models/popular_movies.dart'; 
 
 import '../widgets/grid_view_builder_widget.dart';
