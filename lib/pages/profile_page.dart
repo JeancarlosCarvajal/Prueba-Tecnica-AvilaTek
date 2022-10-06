@@ -25,8 +25,8 @@ class ProfilePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
 
-            Container( // 170 + 99 + 15 padding = 284
-              height: 284, 
+            Container( // 180 + 99 + 15 padding = 294
+              height: 294, 
               padding: const EdgeInsets.only(bottom: 15),
               child: _HeaderActor(actor: actor),
             ),
@@ -40,7 +40,7 @@ class ProfilePage extends StatelessWidget {
                         color: Color.fromARGB(255, 0, 172, 230), 
                         backgroundColor: Color.fromARGB(255, 0, 226, 163),
                       ))
-                    : GridViewBuilder(movies: state.movies, heigthToLeftFree: 284, bottom: 0);
+                    : GridViewBuilder(movies: state.movies, heigthToLeftFree: 294, bottom: 0);
                 }
               )
             ),
@@ -76,19 +76,19 @@ class _HeaderActor extends StatelessWidget {
         ),
       ),
       
-      Container( // alto definido 130 + 40 = 170
-        height: 170,
+      Container( // alto definido 140 + 40 = 180
+        height: 180,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [  
 
-            Row( // profile image and name-desc. alto 130
+            Row( // profile image and name-desc. alto 140
               children: [
                 Flexible(
                   flex: 1,
-                  child: SizedBox( // alto definido 130
-                    height: 130,
+                  child: SizedBox( // alto definido 140
+                    height: 140,
                     child: Column( // profile image
                       children: [
                         Hero( 
@@ -113,7 +113,7 @@ class _HeaderActor extends StatelessWidget {
                 ),
                 Flexible(
                   flex: 3,
-                  child: Container( // name-desc artist. alto igual que profile image 130
+                  child: Container( // name-desc artist. alto igual que profile image 140
                     padding: const EdgeInsets.only(left: 10),
                     child: Column( 
                       children: [
