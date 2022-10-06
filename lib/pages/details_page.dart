@@ -37,7 +37,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
     scale = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: controller, curve: Curves.easeOut)
     );
-    opacity = Tween(begin: 0.1, end: 1.0).animate(
+    opacity = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: controller, curve: const Interval(0.0, 0.75, curve: Curves.easeOut))
     );
 
