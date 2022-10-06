@@ -4,23 +4,24 @@
 
 ## :star: Introducción a la Aplicación :star:
 
-Aplicación creada en Flutter usando el manejador de estado Bloc y la API de https://www.themoviedb.org/ donde "The Movie Database" (TMDB) es una base de datos de películas y TV creada por la comunidad, aplicación creada como parte del proceso de selcción de Desarrolladores Flutter para la empresa Avilatek.com.
+Aplicación creada en Flutter usando el manejador de estado Bloc y la API de [TheMovieDB](https://www.themoviedb.org/) donde "The Movie Database" (TMDB) es una base de datos de películas y TV creada por la comunidad, aplicación creada como parte del proceso de selección de Desarrolladores Flutter para la empresa [AvilaTek](https://www.avilatek.com)
 
 ## :books: Tabla de contenido
 
 - [Versiones](#star-versiones)
 - [Dependencias](#package-dependencias)
 - [Instalación](#hammer_and_wrench-instalación)
+- [Releases](#artificial_satellite-releases)
 - [Apariencia](#camera-apariencia)
 - [Uso](#rocket-uso) 
-- [Support](#hammer_and_wrench-support)
-- [Contributing](#memo-contributing)
-- [License](#scroll-license)
+- [Soporte](#hammer_and_wrench-soporte)
+- [Contribuciones](#memo-contribuciones)
+- [Licencia](#scroll-licencia)
 
 ## :star: Versiones
 
-*  Version de Flutter 3.3.2
-*  Version de la Aplicacion 1.0.0
+*  Versión de Flutter 3.3.2
+*  Versión de la Aplicacion 1.0.0
 
 ## :package: Dependencias
 
@@ -35,7 +36,7 @@ Aplicación creada en Flutter usando el manejador de estado Bloc y la API de htt
 
 **Paso 0:**
 
-Crea un archivo con el nombre de: `.env` (debe ser exacto) en el mismo nivel que el archivo `.gitignore` y agrega la clave de tu API de  https://www.themoviedb.org/ como se muestra debajo, sin espacios:
+Crea un archivo con el nombre de: `.env` (debe ser exacto) en el mismo nivel que el archivo `.gitignore` y agrega la clave de tu API de [TheMovieDB API](https://www.themoviedb.org/documentation/api) como se muestra debajo, sin espacios:
 
 ```sh
 API_KEY=********Your_API_Key********
@@ -74,6 +75,12 @@ flutter run
 ```
 Luego la terminal te preguntará que dispositivo quieres desplegar y escoje uno y escribe el numero correspondiente luego click en enter.
 
+## :artificial_satellite: Releases
+
+* Para crear el release en Android debe seguir la documentación [Build and release an Android app](https://docs.flutter.dev/deployment/android).
+
+* Para crear el release en IOS debe seguir la documentación [Build and release an iOS app](https://docs.flutter.dev/deployment/ios).
+
 
 ## :rocket: Uso
 
@@ -100,14 +107,14 @@ Luego la terminal te preguntará que dispositivo quieres desplegar y escoje uno 
 ![Appearance 8](appearance/UI.png)
 
 
-## :hammer_and_wrench: Support
+## :hammer_and_wrench: Soporte
 
 Por favor [open an issue](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/issues/new) para soporte.
 
-## :memo: Contributing
+## :memo: Contribuciones
 
 Contribuye usando [Github Flow](https://guides.github.com/introduction/flow/). Crea una rama y realiza commits y [open a pull request](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek).
 
-## :scroll: License
+## :scroll: Licencia
 
 [MIT Licence © Jeancarlos Carvajal](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/LICENCE.txt)
