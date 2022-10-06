@@ -55,12 +55,12 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     final movie = ModalRoute.of(context)!.settings.arguments as Movie; 
     detailsMovieBloc.getDetailsMovieById(movieId: movie.id);
-    return SafeArea(
-      child: Scaffold(  
-        body: Stack(
+    return Scaffold(  
+      body: SafeArea(
+        child: Stack(
           children: [ 
-
-
+      
+      
             GestureDetector( // backGround Imgae
               onTap: () {
                 // print('jean: Click al Gesture Detector');
@@ -82,7 +82,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
               ),
             ), 
           
-
+      
             Positioned( // boton azul
               top: 25,
               left: 12,
@@ -103,7 +103,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
                 }, 
               ), 
             ),
-
+      
             
             Positioned( // Movie Title and Actor
               bottom: 0,
@@ -127,7 +127,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
                 }, 
               ),
             ),
-
+      
           ],
         ),
       ),

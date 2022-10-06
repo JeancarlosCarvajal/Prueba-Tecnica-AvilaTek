@@ -20,18 +20,18 @@ class ProfilePage extends StatelessWidget {
     final Cast actor = ModalRoute.of(context)!.settings.arguments as Cast; 
     final ActorProfileBloc actorProfileBloc = BlocProvider.of<ActorProfileBloc>(context);
     actorProfileBloc.getNewActorProfileById(actorId: actor.id); 
-    return SafeArea(
-      child: Scaffold( 
-        body:  Column( 
+    return Scaffold( 
+      body:  SafeArea(
+        child: Column( 
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
+      
             Container( // header actor. 180 + 99 + 15 padding = 294
               height: 294, 
               padding: const EdgeInsets.only(bottom: 15),
               child: _HeaderActor(actor: actor),
             ),
-
+      
             Flexible( // gridview. all height - header actor
               flex: 1,
               child: BlocBuilder<ActorProfileBloc, ActorProfileState>(
@@ -44,8 +44,8 @@ class ProfilePage extends StatelessWidget {
             ),
           ],
         ),
-
       ),
+
     );
   }
 }

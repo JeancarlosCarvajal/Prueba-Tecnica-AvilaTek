@@ -32,14 +32,14 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
           color: Colors.white,
           child: Column( 
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-
+      
               SizedBox(
                 height: 100, 
                 child: Stack(
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-
+      
               Flexible(
                 flex: 1,
                 child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
@@ -81,8 +81,8 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-
       ),
+
     );
   }
 }
