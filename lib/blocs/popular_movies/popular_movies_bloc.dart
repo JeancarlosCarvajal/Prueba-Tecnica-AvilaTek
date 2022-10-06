@@ -26,7 +26,7 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
 
   Future<void> getPopularMoviesByPage({ int page = 1 }) async {
     if( page > state.currentPage && state.isLoading == false ){
-      if( state.currentPage > state.totalPages ) return; 
+      if( page > state.totalPages ) return; 
       add(IsLoadingEvent(isLoading: true));
       final dynamic resp = await PopularMoviesApi.getPopularMoviesJsonData( page: page );
       if(resp == false) return;

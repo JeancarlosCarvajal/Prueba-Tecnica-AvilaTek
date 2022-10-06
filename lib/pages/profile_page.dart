@@ -7,6 +7,7 @@ import '../models/credits_by_idmovie.dart';
 
 import '../routes/routes_app.dart';
 
+import '../widgets/circular_progress_widget.dart';
 import '../widgets/grid_view_builder_widget.dart';
 import '../widgets/leading_widget.dart'; 
 
@@ -25,21 +26,18 @@ class ProfilePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
 
-            Container( // 180 + 99 + 15 padding = 294
+            Container( // header actor. 180 + 99 + 15 padding = 294
               height: 294, 
               padding: const EdgeInsets.only(bottom: 15),
               child: _HeaderActor(actor: actor),
             ),
 
-            Flexible(
+            Flexible( // gridview. all height - header actor
               flex: 1,
               child: BlocBuilder<ActorProfileBloc, ActorProfileState>(
                 builder: (context, state) {
                   return state.movies.isEmpty
-                    ? const Center(child: CircularProgressIndicator(
-                        color: Color.fromARGB(255, 0, 172, 230), 
-                        backgroundColor: Color.fromARGB(255, 0, 226, 163),
-                      ))
+                    ? const Center( child:CircularProgressMovie() )
                     : GridViewBuilder(movies: state.movies, heigthToLeftFree: 294, bottom: 0);
                 }
               )
@@ -76,7 +74,7 @@ class _HeaderActor extends StatelessWidget {
         ),
       ),
       
-      Container( // alto definido 140 + 40 = 180
+      Container( // ProfileImage, name-desc and castedon. alto definido 140 + 40 = 180
         height: 180,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -87,7 +85,7 @@ class _HeaderActor extends StatelessWidget {
               children: [
                 Flexible(
                   flex: 1,
-                  child: SizedBox( // alto definido 140
+                  child: SizedBox( // profile image. alto definido 140
                     height: 140,
                     child: Column( // profile image
                       children: [
@@ -133,10 +131,7 @@ class _HeaderActor extends StatelessWidget {
                           child: BlocBuilder<ActorProfileBloc, ActorProfileState>(
                             builder: (context, state) {
                               return state.movies.isEmpty
-                                ? const Center(child: CircularProgressIndicator(
-                                    color: Color.fromARGB(255, 0, 172, 230), 
-                                    backgroundColor: Color.fromARGB(255, 0, 226, 163),
-                                  ))
+                                ? const Center( child:CircularProgressMovie(strokeWidth: 4.0, widthHeight: 50) )
                                 :  Text( 
                                       state.actorBiography, 
                                       maxLines: 5,
