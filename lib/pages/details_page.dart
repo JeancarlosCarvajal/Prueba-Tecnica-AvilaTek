@@ -56,80 +56,79 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
     final movie = ModalRoute.of(context)!.settings.arguments as Movie; 
     detailsMovieBloc.getDetailsMovieById(movieId: movie.id);
     return Scaffold(  
-      body: SafeArea(
-        child: Stack(
-          children: [ 
+      body: Stack(
+        children: [ 
+
       
-      
-            GestureDetector( // backGround Imgae
-              onTap: () {
-                // print('jean: Click al Gesture Detector');
-                if(controller.status != AnimationStatus.completed) controller.forward();
-              },
-              child: Hero(
-                tag: movie.id,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage( 
-                      image: NetworkImage(movie.fullPostering),
-                      fit: BoxFit.cover
-                    ),
+          GestureDetector( // backGround Imgae
+            onTap: () {
+              // print('jean: Click al Gesture Detector');
+              if(controller.status != AnimationStatus.completed) controller.forward();
+            },
+            child: Hero(
+              tag: movie.id,
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage( 
+                    image: NetworkImage(movie.fullPostering),
+                    fit: BoxFit.cover
                   ),
-                  alignment: Alignment.center, 
-                  height: MediaQuery.of(context).size.height,
-                  width: double.infinity,  
                 ),
+                alignment: Alignment.center, 
+                height: MediaQuery.of(context).size.height,
+                width: double.infinity,  
               ),
-            ), 
-          
+            ),
+          ), 
+        
       
-            Positioned( // boton azul
-              top: 25,
-              left: 12,
-              child: AnimatedBuilder(
-                animation: controller, 
-                builder: (BuildContext context, Widget? child) { 
-                  return Opacity(
-                    opacity: opacity.value,
+          Positioned( // boton azul
+            top: 22,
+            left: 12,
+            child: AnimatedBuilder(
+              animation: controller, 
+              builder: (BuildContext context, Widget? child) { 
+                return Opacity(
+                  opacity: opacity.value,
+                  child: SafeArea(
                     child: LeadingWidget( 
                       icon: Icons.close,
                       color: const Color.fromARGB(255, 195, 195, 195), 
-                      onPressed: () { 
-                        // print('jean: Precionado Boton de la equis'); 
+                      onPressed: () {
                         if(controller.status == AnimationStatus.completed) controller.reverse();
                       },
                     ),
-                  );
-                }, 
-              ), 
-            ),
+                  ),
+                );
+              }, 
+            ), 
+          ),
       
-            
-            Positioned( // Movie Title and Actor
-              bottom: 0,
-              height: 250,
-              child: AnimatedBuilder(
-                animation: controller, 
-                builder: (BuildContext context, Widget? child) { 
-                  return Transform.scale(
-                    scale: scale.value,
-                    child: BlocBuilder<DetailsMovieBloc, DetailsMovieState>(
-                      builder: (context, state) {
-                        return state.castActors.isEmpty
-                          ? SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              child: const CircularProgressMovie()
-                            )
-                          : _MovieTitleAndActos(movie: movie, castActors: state.castActors);
-                      }
-                    )
-                  );
-                }, 
-              ),
+          
+          Positioned( // Movie Title and Actor
+            bottom: 0,
+            height: 250,
+            child: AnimatedBuilder(
+              animation: controller, 
+              builder: (BuildContext context, Widget? child) { 
+                return Transform.scale(
+                  scale: scale.value,
+                  child: BlocBuilder<DetailsMovieBloc, DetailsMovieState>(
+                    builder: (context, state) {
+                      return state.castActors.isEmpty
+                        ? SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: const CircularProgressMovie()
+                          )
+                        : _MovieTitleAndActos(movie: movie, castActors: state.castActors);
+                    }
+                  )
+                );
+              }, 
             ),
+          ),
       
-          ],
-        ),
+        ],
       ),
     );
   }
