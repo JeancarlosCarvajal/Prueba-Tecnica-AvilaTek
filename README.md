@@ -12,7 +12,7 @@ Aplicación creada en Flutter usando el manejador de estado Bloc y la API de htt
 - [Dependencias](#package-dependencias)
 - [Instalación](#hammer_and_wrench-instalación)
 - [Apariencia](#camera-apariencia)
-- [Usage](#rocket-usage) 
+- [Uso](#rocket-uso) 
 - [Support](#hammer_and_wrench-support)
 - [Contributing](#memo-contributing)
 - [License](#scroll-license)
@@ -32,6 +32,14 @@ Aplicación creada en Flutter usando el manejador de estado Bloc y la API de htt
 * [bloc: ^8.1.0](https://pub.dev/packages/equatable)
 
 ## :hammer_and_wrench: Instalación
+
+**Paso 0:**
+
+Crea un archivo con el nombre de: `.env` (debe ser exacto) en el mismo nivel que el archivo `.gitignore` y agrega la cleve de tu API de  https://www.themoviedb.org/ como se muestra debajo, sin espacios:
+
+```sh
+API_KEY=********Your_API_Key********
+```
 
 **Paso 1:**
 
@@ -59,11 +67,22 @@ flutter pub get
 
 **Paso 4:**
 
-Cargar las dependencias establecidas en el archivo pubspec.yaml:
+Correr la aplicacion con el comando:
 
 ```sh
-flutter pub get
+flutter run
 ```
+Luego la terminal te preguntará que dispositivo quieres desplegar y escoje uno y escribe el numero correspondiente luego click en enter.
+
+
+## :rocket: Uso
+
+* Primero se desplegará la [pantalla principal](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/3-min.png) que mostrará las peliculas más populares en cartera de cine, puedes bajar con el scroll y seguirás obteniendo peliculas a medida que existan más disponibles en la API.
+
+* Puedes hace touch sobre alguna pelicula de interes y te llevrá a la [pantalla de detalles](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/4-min.png), donde verás la imagen principal de la pelicula en pantalla compelta, luego si hace touch sobre la pantalla se despliegara los [3 actores mas importantes](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/5-min.png) de la pelicula así como tambien un boton para ocularlos de la pantalla.
+
+* Puedes hacer touch sobre el artista que quieras y te mostrará la siguiente pantalla donde se observará una [Biografia del artista](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/7-min.png) y todas sus peliculas de cine realizadas y documentadas al momento en la API.
+
 
 
 ## :camera: Apariencia
