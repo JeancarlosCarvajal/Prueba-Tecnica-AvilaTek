@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
- 
+  
 import '../blocs/popular_movies/popular_movies_bloc.dart';
+
 import '../json_test/json_test.dart';
+
 import '../models/popular_movies.dart';
+
 import '../widgets/circular_progress_widget.dart';
 import '../widgets/grid_view_builder_widget.dart';
 import '../widgets/leading_widget.dart'; 
@@ -16,20 +19,20 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final PopularMoviesBloc popularMoviesBloc = BlocProvider.of<PopularMoviesBloc>(context);
-    // popularMoviesBloc.getPopularMoviesByPage();
+    popularMoviesBloc.getPopularMoviesByPage();
 
     final PopularMovies popularMovies = PopularMovies.fromJson( JsonTest.popularMovies );  
     final List<Movie> movies = popularMovies.movies; 
 
-          // BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
-          //   builder: (context, state) {
-          //     return state.popularMovies == []
-          //       ? const Center(child: CircularProgressIndicator())
-          //       : GridViewBuilder(movies: state.popularMovies, heigthToLeftFree: 100);
-          //   }
-          // );
+    // BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
+    //   builder: (context, state) {
+    //     return state.popularMovies == []
+    //       ? const Center(child: CircularProgressIndicator())
+    //       : GridViewBuilder(movies: state.popularMovies, heigthToLeftFree: 100);
+    //   }
+    // );
 
-    print('jean movies amount: ${popularMoviesBloc.state.popularMovies.length}');
+    print('jean movies amount: ${popularMoviesBloc.state.movies.length}');
 
     return SafeArea(
       child: Scaffold(
@@ -66,19 +69,17 @@ class HomePage extends StatelessWidget {
                 flex: 1,
                 child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
                   builder: (context, state) {
-                    print('jean: ${state.popularMovies.length}');
-                    return state.popularMovies.isEmpty
+                    print('jean: ${state.movies.length}');
+                    return state.movies.isEmpty
                       ? const CircularProgressMovie()
-                      : GridViewBuilder(movies: state.popularMovies, heigthToLeftFree: 100);
+                      : GridViewBuilder(movies: state.movies, heigthToLeftFree: 100);
                   }
                 )
-              ),
-              
+              ), 
               // Flexible(
               //   flex: 1,
               //   child: GridViewBuilder(movies: movies, heigthToLeftFree: 100)
-              // ),
-            
+              // ), 
             ],
           ),
         ),

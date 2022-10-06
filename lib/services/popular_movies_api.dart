@@ -6,7 +6,7 @@ import '../routes/routes_api.dart';
 class PopularMoviesApi {
 
   static Future<dynamic> getPopularMoviesJsonData({ int page = 1 }) async {
-    // try {
+    try {
       var url = Uri.https( 
         RoutesAPI.baseURL, 
         RoutesAPI.popularMoviesEndPoint, {
@@ -20,10 +20,10 @@ class PopularMoviesApi {
       print('jean popularMoviesEndPoint: ${responce.statusCode}');
       if(responce.statusCode != 200) return false; 
       return responce.body;      
-    // } catch (e) {
-    //   print('jean popularMoviesEndPoint: ${e.toString()}');
-    //   return false;
-    // }
+    } catch (e) {
+      print('jean error popularMoviesEndPoint: ${e.toString()}');
+      return false;
+    }
   }
 
 }

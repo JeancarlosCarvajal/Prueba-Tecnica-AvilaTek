@@ -11,5 +11,9 @@ abstract class PopularMoviesEvent extends Equatable {
 
 class GetPopularMoviesEvent extends PopularMoviesEvent {
   final List<Movie> movies; 
-  GetPopularMoviesEvent({ required this.movies }) : super([ movies ]);
+  final int page;
+  GetPopularMoviesEvent({ 
+    required this.movies, 
+    required this.page 
+  }) : super([ movies, page ]);
 }

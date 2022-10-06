@@ -1,10 +1,20 @@
 part of 'details_movie_bloc.dart';
 
-abstract class DetailsMovieState extends Equatable {
-  const DetailsMovieState();
+class DetailsMovieState extends Equatable {
+
+  final List<Cast> castActors;
+
+  const DetailsMovieState({
+    required this.castActors,
+  });
   
   @override
-  List<Object> get props => [];
-}
+  List<Object> get props => [ castActors ];
 
-class DetailsMovieInitial extends DetailsMovieState {}
+  DetailsMovieState copyWidth({ 
+    List<Cast>? castActors,
+  }) => DetailsMovieState(
+    castActors: castActors ?? this.castActors,
+  ); 
+
+} 

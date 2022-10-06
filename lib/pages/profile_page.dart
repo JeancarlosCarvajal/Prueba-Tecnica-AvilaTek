@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../blocs/actor_profile/actor_profile_bloc.dart';
 import '../json_test/json_test.dart';
 
 import '../models/actor_profile_by_id.dart';
@@ -16,14 +18,16 @@ class ProfilePage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    final Cast actor = ModalRoute.of(context)!.settings.arguments as Cast;
-    // final   test = JsonTest.moviesByActor;
-    // final MoviesByActor moviesByActor = MoviesByActor.fromMap( JsonTest.moviesByActor );  
-    final ActorProfileById actorProfileById = ActorProfileById.fromMap( JsonTest.actorProfileById );  
-    final String actorBiography = actorProfileById.biography;
-    // final List<Movie> movies = moviesByActor.results.first.knownFor;
-    final List<Movie> movies = actorProfileById.credits.cast;
-    print('jean movies actor: ${ movies.length }'); 
+    final Cast actor = ModalRoute.of(context)!.settings.arguments as Cast; 
+
+    final ActorProfileBloc actorProfileBloc = BlocProvider.of<ActorProfileBloc>(context);
+    actorProfileBloc.getNewActorProfileById(actorId: actor.id); 
+    
+    // final ActorProfileById actorProfileById = ActorProfileById.fromMap( JsonTest.actorProfileById );  
+    // final String actorBiography = actorProfileById.biography;
+    // final List<Movie> movies = actorProfileById.credits.cast;
+    // print('jean movies actor: ${ movies.length }'); 
+
     // print('jean castMovies actor: ${ castMovies.length }');
     return SafeArea(
       child: Scaffold( 
@@ -34,14 +38,23 @@ class ProfilePage extends StatelessWidget {
             Container( // 170 + 99 + 15 padding = 284
               height: 284, 
               padding: const EdgeInsets.only(bottom: 15),
-              child: _HeaderActor(actor: actor, actorBiography: actorBiography),
+              child: _HeaderActor(actor: actor), //, actorBiography: state.actorBiography
             ),
-            
+
             Flexible(
               flex: 1,
-              child: GridViewBuilder(movies: movies, heigthToLeftFree: 284, bottom: 0)
-            ),
-          
+              child: BlocBuilder<ActorProfileBloc, ActorProfileState>(
+                builder: (context, state) {
+                  return state.movies.isEmpty
+                    ? const Center(child: CircularProgressIndicator())
+                    : GridViewBuilder(movies: state.movies, heigthToLeftFree: 284, bottom: 0);
+                }
+              )
+            ), 
+            // Flexible( // en duro
+            //   flex: 1,
+            //   child: GridViewBuilder(movies: movies, heigthToLeftFree: 284, bottom: 0)
+            // ), 
           ],
         ),
 
@@ -53,12 +66,10 @@ class ProfilePage extends StatelessWidget {
 class _HeaderActor extends StatelessWidget {
   const _HeaderActor({
     Key? key,
-    required this.actor,
-    required this.actorBiography,
+    required this.actor, 
   }) : super(key: key);
 
-  final Cast actor;
-  final String actorBiography;
+  final Cast actor; 
 
   @override
   Widget build(BuildContext context) {
@@ -131,14 +142,19 @@ class _HeaderActor extends StatelessWidget {
                         Container( // Artist desc
                           alignment: Alignment.topLeft,  
                           padding: const EdgeInsets.only(top: 4),
-                          child: Text( 
-                            actorBiography, 
-                            // 'Duis Lorem amet irure ipsum cillum nostrud tempor. Sunt in aliquip tempor nostrud non mollit laboris. Nulla labore deserunt aute Lorem reprehenderit culpa esse consectetur tempor aliquip.',
-                            maxLines: 5,
-                            textAlign: TextAlign.left,
-                            overflow: TextOverflow.ellipsis, 
-                            style: TextStyle( color: Colors.black, height: 1.3  ), 
-                          ),
+                          child: BlocBuilder<ActorProfileBloc, ActorProfileState>(
+                            builder: (context, state) {
+                              return state.movies.isEmpty
+                                ? const Center(child: CircularProgressIndicator())
+                                :  Text( 
+                                      state.actorBiography, 
+                                      maxLines: 5,
+                                      textAlign: TextAlign.left,
+                                      overflow: TextOverflow.ellipsis, 
+                                      style: const TextStyle( color: Colors.black, height: 1.3  ), 
+                                    );
+                            }
+                          ), 
                         ),
                       ],
                     ),

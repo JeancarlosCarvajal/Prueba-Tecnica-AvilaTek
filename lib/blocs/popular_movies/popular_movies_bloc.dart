@@ -8,10 +8,10 @@ part 'popular_movies_event.dart';
 part 'popular_movies_state.dart';
 
 class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
-  PopularMoviesBloc() : super( const PopularMoviesState(popularMovies: []) ) {
+  PopularMoviesBloc() : super( const PopularMoviesState(movies: []) ) {
 
     on<GetPopularMoviesEvent>((event, emit) => emit(state.copyWidth(
-      popularMovies: [ ...event.movies, ...state.popularMovies ]
+      movies: [ ...event.movies, ...state.movies ]
     )));
     
   }
@@ -21,7 +21,7 @@ class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
     if(resp == false) return;
     final PopularMovies popularMovies = PopularMovies.fromJson(resp);
     final List<Movie> movies = popularMovies.movies; 
-    add(GetPopularMoviesEvent( movies: movies ));  
-  }
+    add(GetPopularMoviesEvent( movies: movies, page: page ));  
+  } 
 
 }

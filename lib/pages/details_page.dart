@@ -1,5 +1,7 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../blocs/details_movie/details_movie_bloc.dart';
 
 import '../json_test/json_test.dart';
 
@@ -8,6 +10,7 @@ import '../models/popular_movies.dart';
 
 import '../routes/routes_app.dart';
 
+import '../widgets/circular_progress_widget.dart';
 import '../widgets/leading_widget.dart';
 import '../widgets/title_sub_title.dart';
 
@@ -24,43 +27,53 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
   late Animation<double> scale;
   late Animation<double> opacity;
 
+  late DetailsMovieBloc detailsMovieBloc; 
+
   @override
   void initState() {
+    detailsMovieBloc = BlocProvider.of<DetailsMovieBloc>(context, listen: false);
+
     controller = AnimationController(
       vsync: this, duration: const Duration(milliseconds: 250)
     );
     scale = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: controller, curve: Curves.easeOut)
     );
-    opacity = Tween(begin: 0.0, end: 1.0).animate(
+    opacity = Tween(begin: 0.1, end: 1.0).animate(
       CurvedAnimation(parent: controller, curve: const Interval(0.0, 0.75, curve: Curves.easeOut))
     );
+
     super.initState();
   }
 
   @override
   void dispose() {
+    // print('jean: haciendo dispoce en details');
     controller.dispose();
+    detailsMovieBloc.add(GetCreditsMovieByIdEvent(castActors: const []));
     super.dispose();
   }
 
 
   @override
   Widget build(BuildContext context) {
-    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
+    final movie = ModalRoute.of(context)!.settings.arguments as Movie; 
+    detailsMovieBloc.getDetailsMovieById(movieId: movie.id);
+
     // print('jean movie: ${movie.id}');
     // print('jean: ${JsonTest.creditsByMovieId}');
 
-    final CreditsByIdMovie creditsByIdMovie = CreditsByIdMovie.fromJson( JsonTest.creditsByMovieId );  
-    final List<Cast> castActors = creditsByIdMovie.cast.toList();
-    print('jean: ${castActors.length}');
+    // final CreditsByIdMovie creditsByIdMovie = CreditsByIdMovie.fromJson( JsonTest.creditsByMovieId );  
+    // final List<Cast> castActors = creditsByIdMovie.cast.toList();
+    // print('jean: ${castActors.length}');
+
     return SafeArea(
       child: Scaffold(  
         body: Stack(
           children: [ 
 
 
-            GestureDetector(
+            GestureDetector( // backGround Imgae
               onTap: () {
                 // print('jean: Click al Gesture Detector');
                 if(controller.status != AnimationStatus.completed) controller.forward();
@@ -82,7 +95,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
             ), 
           
 
-            Positioned(
+            Positioned( // boton azul
               top: 25,
               left: 12,
               child: AnimatedBuilder(
@@ -103,7 +116,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
               ), 
             ),
 
-
+            
             Positioned(
               bottom: 0,
               height: 250,
@@ -112,13 +125,38 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
                 builder: (BuildContext context, Widget? child) { 
                   return Transform.scale(
                     scale: scale.value,
-                    child: _MovieTitleAndActos(movie: movie, castActors: castActors),
+                    child: BlocBuilder<DetailsMovieBloc, DetailsMovieState>(
+                      builder: (context, state) {
+                        print('jean castActors length: ${state.castActors.length}');
+                        return state.castActors.isEmpty
+                          ? SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: const CircularProgressMovie()
+                            )
+                          : _MovieTitleAndActos(movie: movie, castActors: state.castActors);
+                      }
+                    )
                   );
                 }, 
               ),
             ),
 
- 
+
+            // Positioned( // en duro
+            //   bottom: 0,
+            //   height: 250,
+            //   child: AnimatedBuilder(
+            //     animation: controller, 
+            //     builder: (BuildContext context, Widget? child) { 
+            //       return Transform.scale(
+            //         scale: scale.value,
+            //         child: _MovieTitleAndActos(movie: movie, castActors: castActors),
+            //       );
+            //     }, 
+            //   ),
+            // ),
+
+          
           ],
         ),
       ),
