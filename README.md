@@ -10,7 +10,7 @@ Aplicación creada en Flutter usando el manejador de estado Bloc y la API de htt
 
 - [Versiones](#star-versiones)
 - [Dependencias](#package-dependencias)
-- [Instalación](#hammer_and_wrench-instalacion)
+- [Instalación](#hammer_and_wrench-instalación)
 - [Apariencia](#camera-apariencia)
 - [Usage](#rocket-usage) 
 - [Support](#hammer_and_wrench-support)
@@ -91,4 +91,4 @@ Contribuye usando [Github Flow](https://guides.github.com/introduction/flow/). C
 
 ## :scroll: License
 
-[MIT](LICENSE)  [Jeancarlos Carvajal](https://github.com/JeancarlosCarvajal/)
+[MIT Licence © Jeancarlos Carvajal](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/LICENCE.txt)
