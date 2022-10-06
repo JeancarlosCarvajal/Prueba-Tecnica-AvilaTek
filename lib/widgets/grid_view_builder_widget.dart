@@ -7,6 +7,7 @@ import 'title_sub_title.dart';
 class GridViewBuilder extends StatelessWidget {
   const GridViewBuilder({
     Key? key, 
+    this.scrollController,
     required this.movies, 
     this.heigthToLeftFree = 100, 
     this.bottom = 65,
@@ -16,9 +17,12 @@ class GridViewBuilder extends StatelessWidget {
   final List<Movie> movies;
   final double heigthToLeftFree;
   final double bottom;
+  final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
+      final size = MediaQuery.of(context).size;
+      print('jean pantalla 2: ${ size.height }');  
     return SingleChildScrollView(
       child: Container(
         color: Colors.white,
@@ -27,6 +31,7 @@ class GridViewBuilder extends StatelessWidget {
         width: double.infinity, 
         margin: const EdgeInsets.symmetric(horizontal: 20),
         child: GridView.builder(
+          controller: scrollController,
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.only(bottom: bottom),
           itemCount: movies.length,

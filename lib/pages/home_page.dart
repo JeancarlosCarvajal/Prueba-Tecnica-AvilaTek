@@ -11,15 +11,53 @@ import '../widgets/circular_progress_widget.dart';
 import '../widgets/grid_view_builder_widget.dart';
 import '../widgets/leading_widget.dart'; 
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
    
   const HomePage({Key? key}) : super(key: key);
-  
+ 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  ScrollController scrollController = ScrollController(); 
+  late PopularMoviesBloc popularMoviesBloc;
+
+  @override
+  void initState() {
+    popularMoviesBloc = BlocProvider.of<PopularMoviesBloc>(context);
+    popularMoviesBloc.getPopularMoviesByPage();
+
+    // scrollController.addListener(() { 
+    //   // print('jean: Scroll Controller ${scrollController.offset}');
+    //   final size = MediaQuery.of(context).size;
+    //   // print('jean pantalla 1: ${ size.height }');  
+    //   print('jean position pixels ${scrollController.position.pixels}'); // ver cuanto he recorrido del scroll
+    //   print('jean position extent ${scrollController.position.maxScrollExtent}'); // ver el ancho total de este scroll
+    //   if(scrollController.position.pixels >= (scrollController.position.maxScrollExtent-500)){
+    //     // print('jean Debo recargar el scroll, llamar Provider');
+    //     if(popularMoviesBloc.state.isLoading == false){
+    //       print('jean: Cargando a la pagina ${(popularMoviesBloc.state.page + 1)}');
+    //       // popularMoviesBloc.getPopularMoviesByPage( page: (popularMoviesBloc.state.page + 1) );
+    //     }
+    //   }
+    // });
+    super.initState();
+  }
+  @override
+  void dispose() {
+    print('jean: Haciendo dispoce en Home');
+    scrollController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
 
-    final PopularMoviesBloc popularMoviesBloc = BlocProvider.of<PopularMoviesBloc>(context);
-    popularMoviesBloc.getPopularMoviesByPage();
+    bool isLoading = false;
+
+    // final PopularMoviesBloc popularMoviesBloc = BlocProvider.of<PopularMoviesBloc>(context);
+    // popularMoviesBloc.getPopularMoviesByPage();
+    // print('jean movies amount: ${popularMoviesBloc.state.movies.length}');
 
     final PopularMovies popularMovies = PopularMovies.fromJson( JsonTest.popularMovies );  
     final List<Movie> movies = popularMovies.movies; 
@@ -32,7 +70,6 @@ class HomePage extends StatelessWidget {
     //   }
     // );
 
-    print('jean movies amount: ${popularMoviesBloc.state.movies.length}');
 
     return SafeArea(
       child: Scaffold(
@@ -68,11 +105,24 @@ class HomePage extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
-                  builder: (context, state) {
-                    print('jean: ${state.movies.length}');
+                  builder: (context, state) { 
+                    print('jean cargando pagina: ${state.isLoading}');
+                    scrollController.addListener(() { 
+                      print('jean position pixels ${scrollController.position.pixels}'); // ver cuanto he recorrido del scroll
+                      print('jean position extent ${scrollController.position.maxScrollExtent}'); // ver el ancho total de este scroll
+                      if(scrollController.position.pixels >= (scrollController.position.maxScrollExtent-500)){
+                        // print('jean Debo recargar el scroll, llamar Provider');
+                        if(state.isLoading == false){
+                          // isLoading = true;
+                          print('jean: Cargando a la pagina Antes ${(state.page)}'); 
+                          print('jean: Cargando a la pagina ${(state.page + 1)}');
+                          popularMoviesBloc.getPopularMoviesByPage( page: (state.page + 1) );
+                        }
+                      }
+                    });
                     return state.movies.isEmpty
                       ? const CircularProgressMovie()
-                      : GridViewBuilder(movies: state.movies, heigthToLeftFree: 100);
+                      : GridViewBuilder( movies: state.movies, heigthToLeftFree: 100, scrollController: scrollController );
                   }
                 )
               ), 

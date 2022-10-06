@@ -4,22 +4,25 @@ class PopularMoviesState extends Equatable {
 
   final List<Movie> movies;
   final int page;
+  final bool isLoading;
 
   const PopularMoviesState({
     required this.movies,
-    int? page, 
-  }) :
-    page = page ?? 1;
+    required this.page, 
+    required this.isLoading
+  });
   
   @override
-  List<Object> get props => [ movies ];
+  List<Object> get props => [ movies, page, isLoading ];
 
   PopularMoviesState copyWidth({ 
     List<Movie>? movies,
-    int? page
+    int? page,
+    bool? isLoading
   }) => PopularMoviesState(
     movies: movies ?? this.movies,
-    page: page ?? this.page
+    page: page ?? this.page,
+    isLoading: isLoading ?? this.isLoading
   );
 
 }

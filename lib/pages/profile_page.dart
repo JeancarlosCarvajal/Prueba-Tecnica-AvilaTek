@@ -9,6 +9,7 @@ import '../models/credits_by_idmovie.dart';
 
 import '../models/popular_movies.dart'; 
 
+import '../routes/routes_app.dart';
 import '../widgets/grid_view_builder_widget.dart';
 import '../widgets/leading_widget.dart'; 
 
@@ -46,7 +47,10 @@ class ProfilePage extends StatelessWidget {
               child: BlocBuilder<ActorProfileBloc, ActorProfileState>(
                 builder: (context, state) {
                   return state.movies.isEmpty
-                    ? const Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator(
+                        color: Color.fromARGB(255, 0, 172, 230), 
+                        backgroundColor: Color.fromARGB(255, 0, 226, 163),
+                      ))
                     : GridViewBuilder(movies: state.movies, heigthToLeftFree: 284, bottom: 0);
                 }
               )
@@ -145,7 +149,10 @@ class _HeaderActor extends StatelessWidget {
                           child: BlocBuilder<ActorProfileBloc, ActorProfileState>(
                             builder: (context, state) {
                               return state.movies.isEmpty
-                                ? const Center(child: CircularProgressIndicator())
+                                ? const Center(child: CircularProgressIndicator(
+                                    color: Color.fromARGB(255, 0, 172, 230), 
+                                    backgroundColor: Color.fromARGB(255, 0, 226, 163),
+                                  ))
                                 :  Text( 
                                       state.actorBiography, 
                                       maxLines: 5,
@@ -168,7 +175,16 @@ class _HeaderActor extends StatelessWidget {
               height: 40,
               margin: const EdgeInsets.symmetric(horizontal: 20),
               padding: const EdgeInsets.only(bottom: 0),
-              child: const Text( 'Casted on', style: TextStyle( fontSize: 30, fontWeight: FontWeight.w800, color: Colors.black) )
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text( 'Casted on', style: TextStyle( fontSize: 30, fontWeight: FontWeight.w800, color: Colors.black) ),
+                  GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, RouteNames.home),
+                    child: const Text( 'HOME', style: TextStyle( fontWeight: FontWeight.w800, color: Color.fromARGB(255, 135, 135, 135)) )
+                  )
+                ],
+              )
             ), 
  
           ],
