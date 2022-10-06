@@ -1,6 +1,6 @@
 # :fire: movie_app :fire:
 
-# :computer: Aplicación Android-IOS desarrollada en Flutter para visualizar las Peliculas más Populares en las Carteleras de Cine :computer:
+# :computer: Aplicación Android-IOS Desarrollada en Flutter para visualizar las Películas más Populares en las Carteleras de Cine :computer:
 
 ## :star: Introducción a la Aplicación :star:
 
@@ -8,7 +8,7 @@ Aplicación creada en Flutter usando el manejador de estado Bloc y la API de [Th
 
 ## :books: Tabla de contenido
 
-- [Versiones](#star-versiones)
+- [Versiones](#memo-versiones)
 - [Dependencias](#package-dependencias)
 - [Instalación](#hammer_and_wrench-instalación)
 - [Releases](#artificial_satellite-releases)
@@ -18,7 +18,7 @@ Aplicación creada en Flutter usando el manejador de estado Bloc y la API de [Th
 - [Contribuciones](#memo-contribuciones)
 - [Licencia](#scroll-licencia)
 
-## :star: Versiones
+## :memo: Versiones
 
 *  Versión de Flutter 3.3.2
 *  Versión de la Aplicacion 1.0.0
