@@ -15,13 +15,10 @@ class ActorProfileByIdApi {
           'append_to_response':'credits', 
         }
       );
-      print('jean: ${url}');
       final responce = await http.get(url);
-      print('jean actorProfileByIdEndPont: ${responce.statusCode}');
       if(responce.statusCode != 200) return false; 
       return responce.body;      
     } catch (e) {
-      print('jean error actorProfileByIdEndPont: ${e.toString()}');
       return false;
     }
   }

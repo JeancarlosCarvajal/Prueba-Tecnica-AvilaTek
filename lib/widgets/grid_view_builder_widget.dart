@@ -13,7 +13,6 @@ class GridViewBuilder extends StatelessWidget {
     this.bottom = 65,
   }) : super(key: key);
 
-  // final PopularMovies popularMovies;
   final List<Movie> movies;
   final double heigthToLeftFree;
   final double bottom;
@@ -21,9 +20,8 @@ class GridViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final size = MediaQuery.of(context).size;
-      print('jean pantalla 2: ${ size.height }');  
     return SingleChildScrollView(
+      
       child: Container(
         color: Colors.white,
         alignment: Alignment.center, 
@@ -46,7 +44,6 @@ class GridViewBuilder extends StatelessWidget {
         ),
       ),
     
-    
     );
   }
 }
@@ -66,7 +63,6 @@ class _MoviePoster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int parImpar = index % 2;
-    // print('jean: ${parImpar}');
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -74,7 +70,6 @@ class _MoviePoster extends StatelessWidget {
       ),
       padding: EdgeInsets.only(bottom: parImpar == 1 ? 0 : 25, top: parImpar == 1 ? 25 : 0),
       width: 150,
-      // height: 230,
       child: Stack(
         children:  [
           GestureDetector(
@@ -87,14 +82,11 @@ class _MoviePoster extends StatelessWidget {
                   placeholder: const AssetImage('assets/no-image.jpg'), 
                   image: NetworkImage(movie.fullPostering),
                   width: 150,
-                  // height: 230,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
-
-
           Positioned(
             bottom: 5,
             left: 10,
@@ -108,8 +100,6 @@ class _MoviePoster extends StatelessWidget {
               maxLinesSubTitle: 1, 
             ),
           )
-
-
         ],
       ),
     );

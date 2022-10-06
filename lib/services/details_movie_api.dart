@@ -15,13 +15,10 @@ class DetailsMoviesApi {
           'language': RoutesAPI.language, 
         }
       );
-      print('jean: ${url}');
       final responce = await http.get(url);
-      print('jean movieDetailsEndPont: ${responce.statusCode}');
       if(responce.statusCode != 200) return false; 
       return responce.body;
     } catch (e) {
-      print('jean error movieDetailsEndPont: ${e.toString()}');
       return false;
     }
   }

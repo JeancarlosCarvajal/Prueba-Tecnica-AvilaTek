@@ -15,13 +15,10 @@ class PopularMoviesApi {
           'page': '$page'
         }
       );
-      print('jean: ${url}');
       final responce = await http.get(url);
-      print('jean popularMoviesEndPoint: ${responce.statusCode}');
       if(responce.statusCode != 200) return false; 
       return responce.body;      
     } catch (e) {
-      print('jean error popularMoviesEndPoint: ${e.toString()}');
       return false;
     }
   }

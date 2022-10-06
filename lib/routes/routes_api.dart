@@ -8,6 +8,5 @@ class RoutesAPI {
   static String  get popularMoviesEndPoint => '/3/movie/popular';
   static String movieDetailsEndPont({ required String movieId }) => '/3/movie/$movieId/credits';
   static String actorProfileByIdEndPont({ required int actorId }) => '/3/person/$actorId';
-  // static String  get moviesByActorEndPoint   => '/3/search/person';
 
 }

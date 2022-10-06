@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/models/credits_by_idmovie.dart';
+
+import '../../models/credits_by_idmovie.dart';
 
 import '../../services/details_movie_api.dart';
 

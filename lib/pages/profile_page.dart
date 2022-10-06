@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/actor_profile/actor_profile_bloc.dart';
-import '../json_test/json_test.dart';
 
-import '../models/actor_profile_by_id.dart';
 import '../models/credits_by_idmovie.dart';
 
-import '../models/popular_movies.dart'; 
-
 import '../routes/routes_app.dart';
+
 import '../widgets/grid_view_builder_widget.dart';
 import '../widgets/leading_widget.dart'; 
 
@@ -20,16 +17,8 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Cast actor = ModalRoute.of(context)!.settings.arguments as Cast; 
-
     final ActorProfileBloc actorProfileBloc = BlocProvider.of<ActorProfileBloc>(context);
     actorProfileBloc.getNewActorProfileById(actorId: actor.id); 
-    
-    // final ActorProfileById actorProfileById = ActorProfileById.fromMap( JsonTest.actorProfileById );  
-    // final String actorBiography = actorProfileById.biography;
-    // final List<Movie> movies = actorProfileById.credits.cast;
-    // print('jean movies actor: ${ movies.length }'); 
-
-    // print('jean castMovies actor: ${ castMovies.length }');
     return SafeArea(
       child: Scaffold( 
         body:  Column( 
@@ -39,7 +28,7 @@ class ProfilePage extends StatelessWidget {
             Container( // 170 + 99 + 15 padding = 284
               height: 284, 
               padding: const EdgeInsets.only(bottom: 15),
-              child: _HeaderActor(actor: actor), //, actorBiography: state.actorBiography
+              child: _HeaderActor(actor: actor),
             ),
 
             Flexible(
@@ -54,11 +43,7 @@ class ProfilePage extends StatelessWidget {
                     : GridViewBuilder(movies: state.movies, heigthToLeftFree: 284, bottom: 0);
                 }
               )
-            ), 
-            // Flexible( // en duro
-            //   flex: 1,
-            //   child: GridViewBuilder(movies: movies, heigthToLeftFree: 284, bottom: 0)
-            // ), 
+            ),
           ],
         ),
 

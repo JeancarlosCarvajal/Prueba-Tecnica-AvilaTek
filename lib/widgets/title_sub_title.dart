@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// import '../models/popular_movies.dart';
 
 class TitleSubTitle extends StatelessWidget {
   const TitleSubTitle({

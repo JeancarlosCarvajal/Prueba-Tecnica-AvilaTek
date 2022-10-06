@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/details_movie/details_movie_bloc.dart';
 
-import '../json_test/json_test.dart';
-
 import '../models/credits_by_idmovie.dart';
 import '../models/popular_movies.dart';
 
@@ -48,7 +46,6 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
 
   @override
   void dispose() {
-    // print('jean: haciendo dispoce en details');
     controller.dispose(); 
     super.dispose();
   }
@@ -58,14 +55,6 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     final movie = ModalRoute.of(context)!.settings.arguments as Movie; 
     detailsMovieBloc.getDetailsMovieById(movieId: movie.id);
-
-    // print('jean movie: ${movie.id}');
-    // print('jean: ${JsonTest.creditsByMovieId}');
-
-    // final CreditsByIdMovie creditsByIdMovie = CreditsByIdMovie.fromJson( JsonTest.creditsByMovieId );  
-    // final List<Cast> castActors = creditsByIdMovie.cast.toList();
-    // print('jean: ${castActors.length}');
-
     return SafeArea(
       child: Scaffold(  
         body: Stack(
@@ -116,7 +105,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
             ),
 
             
-            Positioned(
+            Positioned( // Movie Title and Actor
               bottom: 0,
               height: 250,
               child: AnimatedBuilder(
@@ -126,7 +115,6 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
                     scale: scale.value,
                     child: BlocBuilder<DetailsMovieBloc, DetailsMovieState>(
                       builder: (context, state) {
-                        print('jean castActors length: ${state.castActors.length}');
                         return state.castActors.isEmpty
                           ? SizedBox(
                               width: MediaQuery.of(context).size.width,
@@ -140,22 +128,6 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
               ),
             ),
 
-
-            // Positioned( // en duro
-            //   bottom: 0,
-            //   height: 250,
-            //   child: AnimatedBuilder(
-            //     animation: controller, 
-            //     builder: (BuildContext context, Widget? child) { 
-            //       return Transform.scale(
-            //         scale: scale.value,
-            //         child: _MovieTitleAndActos(movie: movie, castActors: castActors),
-            //       );
-            //     }, 
-            //   ),
-            // ),
-
-          
           ],
         ),
       ),

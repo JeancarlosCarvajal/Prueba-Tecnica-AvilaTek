@@ -34,7 +34,6 @@ class MovieApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Movies App',
-      // home: HomePageTest(),
       initialRoute: RouteNames.home,
       routes: appRoutes,
       theme: ThemeData(

@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/models/actor_profile_by_id.dart';
-import 'package:movie_app/services/actor_profile_by_id_api.dart';
+
+import '../../models/actor_profile_by_id.dart';
 
 import '../../models/popular_movies.dart';
+
+import '../../services/actor_profile_by_id_api.dart';
 
 part 'actor_profile_event.dart';
 part 'actor_profile_state.dart';
