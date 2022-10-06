@@ -49,8 +49,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
   @override
   void dispose() {
     // print('jean: haciendo dispoce en details');
-    controller.dispose();
-    detailsMovieBloc.add(GetCreditsMovieByIdEvent(castActors: const []));
+    controller.dispose(); 
     super.dispose();
   }
 
