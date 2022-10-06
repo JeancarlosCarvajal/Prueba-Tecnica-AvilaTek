@@ -9,8 +9,8 @@ Aplicación creada en Flutter usando el manejador de estado Bloc y la API de htt
 ## :books: Tabla de contenido
 
 - [Versiones](#star-versiones)
-- [Dependencias](#memo-dependencias)
-- [Instalación](#package-instalacion)
+- [Dependencias](#package-dependencias)
+- [Instalación](#hammer_and_wrench-instalacion)
 - [Apariencia](#camera-apariencia)
 - [Usage](#rocket-usage) 
 - [Support](#hammer_and_wrench-support)
