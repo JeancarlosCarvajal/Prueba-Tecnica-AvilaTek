@@ -35,7 +35,7 @@ Aplicación creada en Flutter usando el manejador de estado Bloc y la API de htt
 
 **Paso 0:**
 
-Crea un archivo con el nombre de: `.env` (debe ser exacto) en el mismo nivel que el archivo `.gitignore` y agrega la cleve de tu API de  https://www.themoviedb.org/ como se muestra debajo, sin espacios:
+Crea un archivo con el nombre de: `.env` (debe ser exacto) en el mismo nivel que el archivo `.gitignore` y agrega la clave de tu API de  https://www.themoviedb.org/ como se muestra debajo, sin espacios:
 
 ```sh
 API_KEY=********Your_API_Key********
@@ -51,7 +51,7 @@ git pull https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek
 
 **Paso 2:**
 
-Limpiar las dependencias antiguas de Flutter (en caso de las haya):
+Limpiar las dependencias antiguas de Flutter (en caso que existan):
 
 ```sh
 flutter clean
@@ -77,11 +77,11 @@ Luego la terminal te preguntará que dispositivo quieres desplegar y escoje uno 
 
 ## :rocket: Uso
 
-* Primero se desplegará la [pantalla principal](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/3-min.png) que mostrará las peliculas más populares en cartera de cine, puedes bajar con el scroll y seguirás obteniendo peliculas a medida que existan más disponibles en la API.
+* Una vez tengas corriendo la aplicación, primero se desplegará la [pantalla principal](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/3-min.png) que mostrará las peliculas más populares en cartera de cine, puedes bajar con el scroll y seguirás obteniendo peliculas a medida que existan más disponibles en la API.
 
-* Puedes hace touch sobre alguna pelicula de interes y te llevrá a la [pantalla de detalles](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/4-min.png), donde verás la imagen principal de la pelicula en pantalla compelta, luego si hace touch sobre la pantalla se despliegara los [3 actores mas importantes](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/5-min.png) de la pelicula así como tambien un boton para ocularlos de la pantalla.
+* Puedes hace touch sobre alguna pelicula de interes y te llevrá a la [pantalla de detalles](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/4-min.png), donde verás la imagen principal de la pelicula en pantalla compelta, luego si hace touch sobre la pantalla se despliegara los [3 actores más importantes](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/5-min.png) de la pelicula así como tambien un boton para ocularlos de la pantalla.
 
-* Puedes hacer touch sobre el artista que quieras y te mostrará la siguiente pantalla donde se observará una [Biografia del artista](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/7-min.png) y todas sus peliculas de cine realizadas y documentadas al momento en la API.
+* Puedes hacer touch sobre el artista que quieras y te mostrará la siguiente pantalla donde se observará una [Biografía del artista](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/7-min.png) y todas sus peliculas de cine realizadas y documentadas al momento en la API. Hay un pequeno texto color gris `HOME` al lado derecho de `Casted on` puedes hacer touch alli y te llevará de vuelta a la pantalla principal (No estaba en el UI pero era necesario para probar la navegación de las pantallas).
 
 
 
