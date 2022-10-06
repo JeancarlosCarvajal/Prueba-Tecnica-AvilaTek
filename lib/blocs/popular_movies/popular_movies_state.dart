@@ -3,26 +3,30 @@ part of 'popular_movies_bloc.dart';
 class PopularMoviesState extends Equatable {
 
   final List<Movie> movies;
-  final int page;
+  final int currentPage;
   final bool isLoading;
+  final int totalPages;
 
   const PopularMoviesState({
     required this.movies,
-    required this.page, 
-    required this.isLoading
+    required this.currentPage, 
+    required this.isLoading,
+    required this.totalPages
   });
   
   @override
-  List<Object> get props => [ movies, page, isLoading ];
+  List<Object> get props => [ movies, currentPage, isLoading, totalPages ];
 
   PopularMoviesState copyWidth({ 
     List<Movie>? movies,
-    int? page,
-    bool? isLoading
+    int? currentPage,
+    bool? isLoading,
+    int? totalPages,
   }) => PopularMoviesState(
     movies: movies ?? this.movies,
-    page: page ?? this.page,
-    isLoading: isLoading ?? this.isLoading
+    currentPage: currentPage ?? this.currentPage,
+    isLoading: isLoading ?? this.isLoading,
+    totalPages: totalPages ?? this.totalPages
   );
 
 }

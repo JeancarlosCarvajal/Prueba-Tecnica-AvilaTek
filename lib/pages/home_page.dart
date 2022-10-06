@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                     scrollController.addListener(() {
                       if(scrollController.position.pixels >= (scrollController.position.maxScrollExtent-500)){
                         if(state.isLoading == false){
-                          popularMoviesBloc.getPopularMoviesByPage( page: (state.page + 1) );
+                          popularMoviesBloc.getPopularMoviesByPage( page: (state.currentPage + 1) );
                         }
                       }
                     });

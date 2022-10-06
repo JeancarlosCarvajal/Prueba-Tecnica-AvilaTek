@@ -43,7 +43,7 @@ class TitleSubTitle extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: sizeTitle, height: heightTitle), 
           ),
           Text(
-            isAverage ? '${subTitle*10}% User Score' : subTitle, 
+            isAverage ? '${(subTitle*10).round()}% User Score' : subTitle, 
             maxLines: maxLinesSubTitle, 
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.left,

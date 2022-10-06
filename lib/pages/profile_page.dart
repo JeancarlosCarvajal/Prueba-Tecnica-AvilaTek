@@ -70,8 +70,7 @@ class _HeaderActor extends StatelessWidget {
         child: LeadingWidget( 
           icon: Icons.arrow_back_ios_new,
           margin: 37, // boton azul, 37x2 padding = 74 mas 25 diametro son 99 por aqui
-          onPressed: () { 
-            print('jean: Precionado Boton');
+          onPressed: () {
             Navigator.pop(context);
           },
         ),

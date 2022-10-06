@@ -11,16 +11,18 @@ abstract class PopularMoviesEvent extends Equatable {
 
 class GetPopularMoviesEvent extends PopularMoviesEvent {
   final List<Movie> movies; 
-  final int page;
+  final int currentPage;
   final bool isLoading;
+  final int totalPages;
   GetPopularMoviesEvent({ 
     required this.movies, 
-    required this.page,
-    required this.isLoading
-  }) : super([ movies, page, isLoading ]);
+    required this.currentPage,
+    required this.isLoading,
+    required this.totalPages
+  }) : super([ movies, currentPage, isLoading, totalPages ]);
 }
 
 class IsLoadingEvent extends PopularMoviesEvent {
   final bool isLoading; 
   IsLoadingEvent({ required this.isLoading }) : super([ isLoading ]);
-}
+} 

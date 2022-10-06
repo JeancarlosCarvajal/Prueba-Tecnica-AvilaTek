@@ -210,6 +210,7 @@ class _ActorPoster extends StatelessWidget {
       height: 230,
       child: Stack(
         children:  [
+
           GestureDetector(
             onTap: () => Navigator.pushNamed( context, RouteNames.profile, arguments: actor ),
             child: Hero(
@@ -226,13 +227,14 @@ class _ActorPoster extends StatelessWidget {
               ),
             ),
           ),
+          
           Positioned(
             bottom: 5,
             left: 10,
             child: TitleSubTitle(
               title: actor.name, 
               subTitle: actor.character, 
-              isAverage: true, 
+              isAverage: false, 
               sizeTitle: 10, 
               sizeSubTitle: 8, 
               maxLinesTitle: 1, 
@@ -240,6 +242,7 @@ class _ActorPoster extends StatelessWidget {
               width: 90,
             ),
           )
+        
         ],
       ),
     );
