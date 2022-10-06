@@ -27,3 +27,7 @@ samples, guidance on mobile development, and a full API reference.
 ![Appearance 5](appearance/5-min.png)
 ![Appearance 6](appearance/6-min.png)
 ![Appearance 7](appearance/7-min.png)
+
+## UI de Guia para crear la Aplicación
+
+![Appearance 8](appearance/UI.png)
