@@ -47,7 +47,7 @@ API_KEY=********Your_API_Key********
 Clonar el repositorio, use el siguiente comando en la temrinal:
 
 ```sh
-git pull https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek 
+git clone https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek 
 ```
 
 **Paso 2:**
