@@ -84,9 +84,9 @@ Luego la terminal te preguntará que dispositivo quieres desplegar y escoje uno 
 
 ## :rocket: Uso
 
-* Una vez tengas corriendo la aplicación, primero se desplegará la [pantalla principal](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/3-min.png) que mostrará las peliculas más populares en cartera de cine, puedes bajar con el scroll y seguirás obteniendo peliculas a medida que existan más disponibles en la API/
+* Una vez tengas corriendo la aplicación, primero se desplegará la [pantalla principal](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/3-min.png) que mostrará las peliculas más populares en cartera de cine, puedes bajar con el scroll y seguirás obteniendo peliculas a medida que existan más disponibles en la API.
 
-* Al hacer touch sobre el ícono azul redondo (Menú Hamburguesa) en la parte superior izquierda de la aplicación se despliega una pantalla para colocar un menú de opciones de configuración y navegación según requerimientos futuros de la Aplicación;
+* Al hacer touch sobre el ícono azul redondo (Menú Hamburguesa) en la parte superior izquierda de la aplicación se despliega una pantalla para colocar un menú de opciones de configuración y navegación según requerimientos futuros de la Aplicación.
 
 * Puedes hace touch sobre alguna película de interes y te llevrá a la [pantalla de detalles](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/4-min.png), donde verás la imagen principal de la película en pantalla compelta, luego si haces touch sobre la pantalla se despliegará los [3 actores más importantes](https://github.com/JeancarlosCarvajal/Prueba-Tecnica-AvilaTek/blob/master/appearance/5-min.png) de la película así como también un botón para ocularlos de la pantalla.
 
