@@ -20,7 +20,7 @@ class DetailsPage extends StatefulWidget {
   State<DetailsPage> createState() => _DetailsPageState();
 }
 
-class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStateMixin  {
+class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> scale;
   late Animation<double> opacity;
@@ -127,6 +127,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
               }, 
             ),
           ),
+      
       
         ],
       ),
